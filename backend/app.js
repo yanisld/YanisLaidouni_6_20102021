@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const sauceRoutes = require('./routes/sauce');
+const userRoutes = require("./routes/user");
+
 const app = express();
 
 mongoose.connect('mongodb+srv://yanis:yanis@cluster0.nu5lj.mongodb.net/piiquante?retryWrites=true&w=majority',
@@ -19,5 +22,8 @@ app.use((req, res, next) => {
 app.use((req, res) => {
    res.json({ message: 'Votre requête a bien été reçue !' }); 
 });
+
+app.use('/api/sauces', sauceRoutes);
+app.use("/api/auth", userRoutes);
 
 module.exports = app;
