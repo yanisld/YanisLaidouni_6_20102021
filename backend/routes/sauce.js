@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
 
 router.get('/', auth);
-router.post('/', auth);
+router.post('/', auth, multer);
 router.get('/:id', auth);
-router.put('/:id');
-router.delete('/:id');
+router.put('/:id', auth, multer);
+router.delete('/:id', auth);
 
 module.exports = router;
