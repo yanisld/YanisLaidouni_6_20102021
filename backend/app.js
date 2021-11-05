@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+var morgan  = require('morgan');
 const { dirname } = require('path');
 require('dotenv').config();
 const path = require("path");
@@ -24,6 +25,8 @@ app.use((req, res, next) => {
    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
    next();
  });
+
+ app.use(morgan('tiny'));
 
  app.use("/images", express.static(path.join(__dirname, "images")));
 
